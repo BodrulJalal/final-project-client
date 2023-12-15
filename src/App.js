@@ -17,6 +17,7 @@ import {
 // components here
 
 import AddCampus from './components/views/AddCampus';
+import EditCampus  from "./components/views/EditCampus";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
         <Route exact path="/newstudent" component={NewStudentContainer} />
         <Route exact path="/student/:id" component={StudentContainer} />
         <Route exact path="/addcampus" component={AddCampus} />
+        <Route exact path="/editcampus/:id" component={EditCampus} />
       </Switch>        
     </div>
   );

@@ -1,17 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useParams, useHistory } from 'react-router-dom';
 import './AddOrEditCampusForm.css';
-import { useHistory } from 'react-router-dom';
 
-const AddCampusForm = () => {
-  const [campus, setCampus] = useState({
-    name: '',
-    address: '',
-    description: '',
-    imageUrl: ''
-  });
-
+const EditCampus = () => {
+  const [campus, setCampus] = useState({ name: '', address: '', description: '', imageUrl: '' });
   const [errors, setErrors] = useState({});
+  const { id } = useParams(); // Get campus ID from URL
+  const history = useHistory();
+
+  useEffect(() => {
+    // Fetch campus data when component mounts
+    const fetchCampusData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5001/api/campuses/${id}`);
+        setCampus(response.data);
+      } catch (error) {
+        console.error('Error fetching campus data:', error);
+      }
+    };
+
+    fetchCampusData();
+  }, [id]);
 
   const validate = () => {
     const newErrors = {};
@@ -37,9 +47,7 @@ const AddCampusForm = () => {
   
     return url.protocol === "http:" || url.protocol === "https:";
   };
-
-  const history = useHistory(); // For navigation
-
+  
   const handleBack = () => {
     history.push('/campuses'); // Navigate to All Campuses view
   };
@@ -50,14 +58,12 @@ const AddCampusForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const isValid = validate();
-    if (isValid) {
+    if (validate()) {
       try {
-        await axios.post('http://localhost:5001/api/campuses', campus);
-        // Handle success (e.g., redirect or display message)
+        await axios.put(`http://localhost:5001/api/campuses/${id}`, campus);
+        history.push('/campuses'); // Redirect to campuses view after successful edit
       } catch (error) {
-        console.error('Error adding campus:', error);
-        // Display error message
+        console.error('Error updating campus:', error);
       }
     }
   };
@@ -67,7 +73,7 @@ const AddCampusForm = () => {
 
       <button onClick={handleBack} className="back-button">Back to All Campuses</button>
 
-      <h2>Add Campus</h2>
+      <h2>Edit Campus</h2>
       <form onSubmit={handleSubmit} className="campus-form">
         <div className="form-field">
           <label>Name:</label>
@@ -113,10 +119,10 @@ const AddCampusForm = () => {
           />{errors.imageUrl && <div className="error-message">{errors.imageUrl}</div>}
         </div>
 
-        <button type="submit" className="submit-button">Add Campus</button>
+        <button type="submit" className="submit-button">Update Campus</button>
       </form>
     </div>
   );
 };
 
-export default AddCampusForm;
+export default EditCampus;

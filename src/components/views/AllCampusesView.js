@@ -6,6 +6,7 @@ It constructs a React component to display all campuses.
 ================================================== */
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import './AddOrEditButton.css'
 
 const AllCampusesView = (props) => {
   // If there is no campus, display a message.
@@ -23,16 +24,20 @@ const AllCampusesView = (props) => {
           <Link to={`/campus/${campus.id}`}>
             <h2>{campus.name}</h2>
           </Link>
+          <Link to={`/editcampus/${campus.id}`}>
+            <button className="campus-edit-button">Edit Campus</button> {/* Edit button next to each campus */}
+          </Link>
           <h4>campus id: {campus.id}</h4>
           <p>{campus.address}</p>
           <p>{campus.description}</p>
           <hr/>
+          
         </div>
       ))}
       <br/>
       
       <Link to="/addcampus">
-        <button>Add New Campus</button>
+        <button className="campus-add-button">Add New Campus</button>
       </Link>
 
       <br/><br/>
