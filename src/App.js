@@ -16,6 +16,8 @@ import {
 // a student or campus, make sure you add routes to those
 // components here
 
+import AddCampus from './components/views/AddCampus';
+
 const App = () => {
   return (
     <div className="App">
@@ -26,6 +28,7 @@ const App = () => {
         <Route exact path="/students" component={AllStudentsContainer} />
         <Route exact path="/newstudent" component={NewStudentContainer} />
         <Route exact path="/student/:id" component={StudentContainer} />
+        <Route exact path="/addcampus" component={AddCampus} />
       </Switch>        
     </div>
   );

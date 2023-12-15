@@ -9,7 +9,7 @@ import Header from './Header';
 import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchAllCampusesThunk } from "../../store/thunks";
+import { fetchAllCampusesThunk, addCampusThunk } from "../../store/thunks";
 import { AllCampusesView } from "../views";
 
 class AllCampusesContainer extends Component {
@@ -18,6 +18,10 @@ class AllCampusesContainer extends Component {
     console.log(this.props);
     this.props.fetchAllCampuses();
   }
+
+  handleAddCampus = (campusData) => {
+    this.props.addCampusThunk(campusData);
+  };
 
   // Render All Campuses view by passing all campuses data as props to the corresponding View component
   render() {
@@ -37,14 +41,15 @@ class AllCampusesContainer extends Component {
 // The following 2 input arguments are passed to the "connect" function used by "AllCampusesContainer" component to connect to Redux Store.
 const mapState = (state) => {
   return {
-    allCampuses: state.allCampuses,  // Get the State object from Reducer "allCampuses"
+    allCampuses: state.allCampuses,  // Map state.allCampuses to props.allCampuses
   };
 };  
 // 2. The "mapDispatch" argument is used to dispatch Action (Redux Thunk) to Redux Store.
 // The "mapDispatch" calls the specific Thunk to dispatch its action. The "dispatch" is a function of Redux Store.
 const mapDispatch = (dispatch) => {
   return {
-    fetchAllCampuses: () => dispatch(fetchAllCampusesThunk()),
+    fetchAllCampuses: () => dispatch(fetchAllCampusesThunk()), // Dispatching fetchAllCampusesThunk
+    ddCampus: (campusData) => dispatch(addCampusThunk(campusData)), // Dispatching addCampus action
   };
 };
 

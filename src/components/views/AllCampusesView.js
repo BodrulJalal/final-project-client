@@ -30,9 +30,11 @@ const AllCampusesView = (props) => {
         </div>
       ))}
       <br/>
-      <Link to={`/`}>
+      
+      <Link to="/addcampus">
         <button>Add New Campus</button>
       </Link>
+
       <br/><br/>
     </div>
   );
