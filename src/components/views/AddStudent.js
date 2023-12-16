@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './AddOrEditCampusForm.css';
+import './AddorEditStudentForm.css';
 import { useHistory } from 'react-router-dom';
 
 const AddStudentForm = () => {

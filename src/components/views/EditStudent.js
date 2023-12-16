@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useHistory } from 'react-router-dom';
-import './AddOrEditStudentForm.css';
+import './AddorEditStudentForm.css';
 
 const EditStudent = () => {
   const [student, setStudent] = useState({ firstName: '', lastName: '', email: '', imageUrl: '', gpa: '' });
@@ -61,7 +61,7 @@ const EditStudent = () => {
     event.preventDefault();
     if (validate()) {
       try {
-        await axios.put(`http://localhost:5001/api/students/${id}`, students);
+        await axios.put(`http://localhost:5001/api/students/${id}`, student);
         history.push('/students'); // Redirect to students view 
       } catch (error) {
         console.error('Error updating students:', error);

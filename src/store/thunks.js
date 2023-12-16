@@ -17,25 +17,6 @@ export const fetchAllCampusesThunk = () => async (dispatch) => {
   }
 };
 
-export const addCampusThunk = (campus) => async (dispatch) => {
-  try {
-    const response = await axios.post('/api/campuses', campus);
-    dispatch(ac.addCampus(response.data));
-    return response.data;
-  } catch (err) {
-    console.error('Error adding campus:', err);
-  }
-};
-
-export const editCampusThunk = (campus) => async (dispatch) => {
-  try {
-    const response = await axios.put(`/api/campuses/${campus.id}`, campus);
-    dispatch(ac.editCampus(response.data));
-  } catch (error) {
-    console.error('Error editing campus:', error);
-  }
-};
-
 export const fetchCampusThunk = (id) => async (dispatch) => {
   try {
     let res = await axios.get(`/api/campuses/${id}`);

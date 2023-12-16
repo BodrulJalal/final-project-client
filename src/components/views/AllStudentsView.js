@@ -6,7 +6,7 @@ It constructs a React component to display the all students view page.
 ================================================== */
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import './AddOrEditButtonStudent.css';
+import './AddorEditButtonStudent.css';
 
 const AllStudentsView = (props) => {
   const { students, deleteStudent } = props;

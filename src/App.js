@@ -13,7 +13,7 @@ import {
 } from './components/containers';
 
 import EditStudent from "./components/views/EditStudent";
-import { AddStudent } from "./components/views/AddStudent";
+import AddStudent from "./components/views/AddStudent";
 
 // if you create separate components for adding/editing 
 // a student or campus, make sure you add routes to those
