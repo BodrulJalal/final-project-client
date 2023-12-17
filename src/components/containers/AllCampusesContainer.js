@@ -30,6 +30,7 @@ class AllCampusesContainer extends Component {
         <Header />
         <AllCampusesView
           allCampuses={this.props.allCampuses}
+          deleteCampus={this.props.deleteCampus}
         />
       </div>
     );
@@ -50,6 +51,7 @@ const mapDispatch = (dispatch) => {
   return {
     fetchAllCampuses: () => dispatch(fetchAllCampusesThunk()), // Dispatching fetchAllCampusesThunk
     ddCampus: (campusData) => dispatch(addCampusThunk(campusData)), // Dispatching addCampus action
+    deleteCampus: (campusId) => dispatch(deleteCampusThunk(campusId)),//Dispatching deleteCampus action
   };
 };
 
