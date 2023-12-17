@@ -20,20 +20,25 @@ const StudentView = (props) => {
       <h1>{student.firstname + " " + student.lastname}</h1>
       </div>
 
+      <p>Student ID: {student.id}</p>
+      <p>First Name: {student.firstname}</p>
+      <p>Last Name: {student.lastname}</p>
+      <p>Email: {student.email}</p>
+      {student.gpa && <p>GPA: {student.gpa.toFixed(2)}</p>}
+      {/* <p>GPA: {student.gpa}</p> */}
+
       {student.campus ? (
+        <div>
+          <p>Attends:</p>
+          <p></p>
         <Link to={`/campus/${student.campus.id}`}>
           <h3>{student.campus.name}</h3>
         </Link>
+        </div>
       ) : (
         <p>No Campus Associated With This Student</p>
       )}
-
       
-      <p>Email: {student.email}</p>
-      {student.gpa && <p>GPA: {student.gpa.toFixed(1)}</p>}
-      {/* <p>GPA: {student.gpa}</p> */}
-      <p>Student ID: {student.id}</p>
-
       <div style={{ display: 'flex', gap: '10px' }}> 
         <Link to={`/editstudent/${student.id}`}><button>Edit</button></Link>
         <Link to={`/students`}>
