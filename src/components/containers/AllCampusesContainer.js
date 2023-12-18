@@ -50,8 +50,12 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     fetchAllCampuses: () => dispatch(fetchAllCampusesThunk()), // Dispatching fetchAllCampusesThunk
-    ddCampus: (campusData) => dispatch(addCampusThunk(campusData)), // Dispatching addCampus action
-    deleteCampus: (campusId) => dispath(deleteCampusThunk(campusId)),
+    addCampus: (campusData) => dispatch(addCampusThunk(campusData)), // Dispatching addCampus action
+    deleteCampus: (campusId) => {
+      dispatch(deleteCampusThunk(campusId)).then(() => {
+        window.location.reload();
+      });
+    },
   };
 };
 
