@@ -38,6 +38,18 @@ export const editCampusThunk = (campus) => async (dispatch) => {
   }
 };
 
+//Delete Campus Thunk
+export const deleteCampusThunk = campusId => async dispatch => {
+try{
+await axios.delete(`/api/campuses/${campusId}`);
+dispatch(ac.deleteCampus(campusId));
+}
+catch(err){
+console.error(err);
+}
+};
+
+
 // Single Campus
 // THUNK CREATOR:
 export const fetchCampusThunk = (id) => async (dispatch) => {  // The THUNK
