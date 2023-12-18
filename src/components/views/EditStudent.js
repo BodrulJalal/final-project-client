@@ -4,7 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import './AddorEditStudentForm.css';
 
 const EditStudent = () => {
-  const [student, setStudent] = useState({ firstName: '', lastName: '', email: '', imageUrl: '', gpa: '' });
+  const [student, setStudent] = useState({ firstname: '', lastname: '', email: '', imageUrl: '', gpa: '' });
   const [errors, setErrors] = useState({});
   const { id } = useParams(); // Get student ID from URL
   const history = useHistory();
@@ -24,8 +24,8 @@ const EditStudent = () => {
 
   const validate = () => {
     const newErrors = {};
-    if (!student.firstName) newErrors.name = 'First Name is required';
-    if (!student.lastName) newErrors.lastName = 'Last Name is required';
+    if (!student.firstname) newErrors.firstname = 'First Name is required';
+    if (!student.lastname) newErrors.lastname = 'Last Name is required';
     if (!student.email) newErrors.email = 'Email is required';
     if (!student.imageUrl) newErrors.imageUrl = 'Image URL is required';
     if (!student.gpa) newErrors.gpa = 'GPA is required';
@@ -80,25 +80,25 @@ const EditStudent = () => {
       <div className="form-field">
         <label>First Name:</label>
         <input
-          name="firstName"
-          value={student.firstName}
+          name="firstname"
+          value={student.firstname}
           onChange={handleChange}
           placeholder="First Name"
-          className={errors.firstName ? 'error' : ''}
+          className={errors.firstname ? 'error' : ''}
         />
-        {errors.firstName && <div className="error-message">{errors.firstName}</div>}
+        {errors.firstname && <div className="error-message">{errors.firstname}</div>}
       </div>
   
       <div className="form-field">
         <label>Last Name:</label>
         <input
-          name="lastName"
-          value={student.lastName}
+          name="lastname"
+          value={student.lastname}
           onChange={handleChange}
           placeholder="Last Name"
-          className={errors.lastName ? 'error' : ''}
+          className={errors.lastname ? 'error' : ''}
         />
-        {errors.lastName && <div className="error-message">{errors.lastName}</div>}
+        {errors.lastname && <div className="error-message">{errors.lastname}</div>}
       </div>
   
       <div className="form-field">

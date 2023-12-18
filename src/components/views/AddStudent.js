@@ -5,8 +5,8 @@ import { useHistory } from 'react-router-dom';
 
 const AddStudentForm = () => {
   const [student, setStudent] = useState({
-    firstName: '',
-    lastName: '',
+    firstname: '',
+    lastname: '',
     email: '',
     imageUrl: '',
     gpa: ''
@@ -16,8 +16,8 @@ const AddStudentForm = () => {
 
   const validate = () => {
     const newErrors = {};
-    if (!student.firstName) newErrors.firstName = 'First Name is required';
-    if (!student.lastName) newErrors.lastName = 'Last Name is required';
+    if (!student.firstname) newErrors.firstname = 'First Name is required';
+    if (!student.lastname) newErrors.lastname = 'Last Name is required';
     if (!student.email) newErrors.email = 'Email is required';
     if (!student.imageUrl) newErrors.imageUrl = 'Image URL is required'
     if (!student.gpa) newErrors.gpa = 'GPA is required'
@@ -56,6 +56,7 @@ const AddStudentForm = () => {
     if (isValid) {
       try {
         await axios.post('http://localhost:5001/api/students', student);
+        history.push('/students'); // Navigate to All Students view
         // Handle success (e.g., redirect or display message)
       } catch (error) {
         console.error('Error adding student:', error);
@@ -74,23 +75,23 @@ const AddStudentForm = () => {
         <div className="form-field">
           <label>First Name:</label>
           <input
-            name="firstName"
-            value={student.firstName}
+            name="firstname"
+            value={student.firstname}
             onChange={handleChange}
             placeholder="First Name"
-            className={errors.firstName ? 'error' : ''}
-          />{errors.firstName && <div className="error-message">{errors.firstName}</div>}
+            className={errors.firstname ? 'error' : ''}
+          />{errors.firstname && <div className="error-message">{errors.firstname}</div>}
         </div>
 
         <div className="form-field">
           <label>Last Name:</label>
           <input
-            name="lastName"
-            value={student.lastName}
+            name="lastname"
+            value={student.lastname}
             onChange={handleChange}
             placeholder="Last Name"
-            className={errors.lastName ? 'error' : ''}
-          />{errors.lastName && <div className="error-message">{errors.lastName}</div>}
+            className={errors.lastname ? 'error' : ''}
+          />{errors.lastname && <div className="error-message">{errors.lastname}</div>}
         </div>
 
         <div className="form-field">
