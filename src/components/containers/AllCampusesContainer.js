@@ -51,7 +51,7 @@ const mapDispatch = (dispatch) => {
   return {
     fetchAllCampuses: () => dispatch(fetchAllCampusesThunk()), // Dispatching fetchAllCampusesThunk
     ddCampus: (campusData) => dispatch(addCampusThunk(campusData)), // Dispatching addCampus action
-    deleteCampus: (campusData) => dispath(deleteCampusThunk(campusData)),
+    deleteCampus: (campusId) => dispath(deleteCampusThunk(campusId)),
   };
 };
 
