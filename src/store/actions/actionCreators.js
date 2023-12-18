@@ -72,3 +72,10 @@ export const deleteStudent = (studentId) => {
     payload: studentId,
   };
 };
+
+export const deleteCampus = (campusId) => {
+  return {
+    type: at.DELETE_CAMPUS,
+    payload: campusId,
+  };
+};
