@@ -20,6 +20,7 @@ const AddStudentForm = () => {
     if (!student.lastName) newErrors.lastName = 'Last Name is required';
     if (!student.email) newErrors.email = 'Email is required';
     if (!student.imageUrl) newErrors.imageUrl = 'Image URL is required'
+    if (!student.gpa) newErrors.gpa = 'GPA is required'
     else if (!isValidHttpUrl(student.imageUrl)) {
         newErrors.imageUrl = 'Invalid URL';
     };
