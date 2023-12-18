@@ -54,6 +54,7 @@ const AddCampusForm = () => {
     if (isValid) {
       try {
         await axios.post('http://localhost:5001/api/campuses', campus);
+        history.push('/campuses'); // Navigate to All Students view
         // Handle success (e.g., redirect or display message)
       } catch (error) {
         console.error('Error adding campus:', error);
