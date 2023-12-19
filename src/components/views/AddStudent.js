@@ -9,7 +9,8 @@ const AddStudentForm = () => {
     lastname: '',
     email: '',
     imageUrl: '',
-    gpa: ''
+    gpa: '',
+    campusId: ''
   });
 
   const [errors, setErrors] = useState({});
@@ -55,7 +56,11 @@ const AddStudentForm = () => {
     const isValid = validate();
     if (isValid) {
       try {
-        await axios.post('http://localhost:5001/api/students', student);
+        // Include campusId in the request data if it's provided
+        const postData = { ...student };
+        postData.campusId = postData.campusId === '' ? null : postData.campusId;
+        
+        await axios.post('http://localhost:5001/api/students', postData);
         history.push('/students'); // Navigate to All Students view
         // Handle success (e.g., redirect or display message)
       } catch (error) {
@@ -64,6 +69,7 @@ const AddStudentForm = () => {
       }
     }
   };
+  
 
   return (
     <div className="form-container">
@@ -125,6 +131,17 @@ const AddStudentForm = () => {
             placeholder="GPA"
             className={errors.gpa ? 'error' : ''}
           />{errors.gpa && <div className="error-message">{errors.gpa}</div>}
+        </div>
+
+        <div className="form-field">
+          <label>Campus ID:</label>
+          <input
+            name="campusId"
+            value={student.campusId}
+            onChange={handleChange}
+            placeholder="Campus ID (optional)"
+            className={errors.campusId ? 'error' : ''}
+          />{errors.campusId && <div className="error-message">{errors.campusId}</div>}
         </div>
 
         <button type="submit" className="submit-button">Add Student</button>

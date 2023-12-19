@@ -4,7 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import './AddorEditStudentForm.css';
 
 const EditStudent = () => {
-  const [student, setStudent] = useState({ firstname: '', lastname: '', email: '', imageUrl: '', gpa: '' });
+  const [student, setStudent] = useState({ firstname: '', lastname: '', email: '', imageUrl: '', gpa: '', campusId: '' });
   const [errors, setErrors] = useState({});
   const { id } = useParams(); // Get student ID from URL
   const history = useHistory();
@@ -61,10 +61,14 @@ const EditStudent = () => {
     event.preventDefault();
     if (validate()) {
       try {
-        await axios.put(`http://localhost:5001/api/students/${id}`, student);
-        history.push('/students'); // Redirect to students view 
+        // Include campusId in the request data if it's provided
+        const postData = { ...student };
+        postData.campusId = postData.campusId === '' ? null : postData.campusId;
+  
+        await axios.put(`http://localhost:5001/api/students/${id}`, postData);
+        history.push('/students'); // Redirect to students view
       } catch (error) {
-        console.error('Error updating students:', error);
+        console.error('Error updating student:', error);
       }
     }
   };
@@ -136,6 +140,18 @@ const EditStudent = () => {
         />
         {errors.gpa && <div className="error-message">{errors.gpa}</div>}
       </div>
+      
+      <div className="form-field">
+          <label>Campus ID:</label>
+          <input
+            name="campusId"
+            value={student.campusId}
+            onChange={handleChange}
+            placeholder="Campus ID (optional)"
+            className={errors.campusId ? 'error' : ''}
+          />
+          {errors.campusId && <div className="error-message">{errors.campusId}</div>}
+        </div>
   
       <button type="submit" className="submit-button">
         Update Student
