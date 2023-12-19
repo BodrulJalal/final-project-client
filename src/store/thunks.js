@@ -108,3 +108,13 @@ export const fetchStudentThunk = (id) => async (dispatch) => {
     console.error(err);
   }
 };
+
+export const deleteCampusStudentOnlyThunk = (student) => async (dispatch) => {
+  try {
+    let updatedStudent = await axios.put(`/api/students/${student.id}`, { ...student, campusId: null });
+    dispatch(ac.editStudent(updatedStudent));
+    window.location.reload();
+  } catch (err) {
+    console.error(err);
+  }
+};
