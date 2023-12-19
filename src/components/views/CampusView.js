@@ -27,7 +27,7 @@ const CampusView = (props) => {
       </div>
       
       <div style={{marginTop:"10px"}}></div>
-      <Link to={`/newstudent`}><button>Add students to {campus.name}</button></Link>      
+      <Link to={`/addstudent`}><button>Add New Student To {campus.name} With Campus ID: {campus.id}</button></Link>
       <div style={{marginBottom:"12px"}}></div>
 
       <Divider/>
